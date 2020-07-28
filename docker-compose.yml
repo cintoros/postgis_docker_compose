@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  database:
+    image: kartoza/postgis:9.6-2.4
+    restart: "no"
+    ports:
+      - 5432:5432
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+
+  adminer:
+    image: adminer
+    restart: "no"
+    ports:
+      - 8086:8080
+volumes:
+  database-data: # named volumes can be managed easier using docker-compose
+
